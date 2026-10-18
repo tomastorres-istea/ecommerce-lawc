@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Encontrá productos y ofertas en nuestra tienda online.">
+
+    <title>LAWC e-Commerce</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <head>
+        <nav class="navbar md:navbar-expand bg-1">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="#inicio">
+                    LAWC e-Commerce
+                </a>
+
+                <button
+                    class="btn-icon navbar-toggler"
+                    type="button"
+                    data-bs-toggle="drawer"
+                    data-bs-target="#navbarDrawer"
+                    aria-controls="navbarDrawer"
+                    aria-expanded="false"
+                    aria-label="Abrir menú de navegación">
+
+                    <span class="navbar-toggler-icon" aria-hidden="true"></span>
+                </button>
+
+                <dialog
+                    class="drawer drawer-end"
+                    tabindex="-1"
+                    id="navbarDrawer"
+                    aria-labelledby="navbarDrawerLabel">
+
+                    <div class="drawer-header">
+                        <h5 class="drawer-title" id="navbarDrawerLabel">
+                            Navegación
+                        </h5>
+
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="drawer"
+                            aria-label="Cerrar">
+                        </button>
+                    </div>
+
+                    <div class="drawer-body mb-2 md:mb-0">
+
+                        <ul class="nav navbar-nav me-auto">
+
+                            <li class="nav-item">
+                                <a class="nav-link active"
+                                aria-current="page"
+                                href="#inicio">
+                                    Inicio
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#productos">
+                                    Productos
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <button
+                                    class="nav-link"
+                                    type="button"
+                                    data-bs-toggle="menu"
+                                    aria-expanded="false">
+                                    Categorías
+                                </button>
+
+                                <div class="menu">
+                                    <a class="menu-item" href="#productos">
+                                        Todos los productos
+                                    </a>
+
+                                    <a class="menu-item" href="#productos">
+                                        Novedades
+                                    </a>
+
+                                    <hr class="menu-divider">
+
+                                    <a class="menu-item" href="#contacto">
+                                        Ayuda y contacto
+                                    </a>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                        <form class="hstack gap-2" role="search">
+                            <input
+                                class="form-control"
+                                type="search"
+                                placeholder="Buscar productos"
+                                aria-label="Buscar productos">
+
+                            <button
+                                class="btn-solid btn-icon theme-secondary"
+                                type="submit"
+                                aria-label="Buscar">
+                                🔍
+                            </button>
+                        </form>
+
+                    </div>
+                </dialog>
+            </div>
+        </nav>
+    </head>
+
+    <main>
+
+
+        <section id="productos" class="container py-4">
+            <h2 class="mb-4">Nuestros productos</h2>
+
+            <div id="listaProductos" class="row row-cols-1 md:row-cols-2 g-4">
+                <!-- Las cards se generan desde JS index.js -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contacto" class="footer">
+        <div class="container">
+
+            <div class="row g-4">
+
+                <div class="col-md-6">
+                    <h4>Contacto</h4>
+
+                    <p>
+                        ¿Tenés alguna consulta? Próximamente vas a poder
+                        comunicarte con nosotros desde esta sección.
+                    </p>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <p class="copyright">
+                &copy; 2026 LAW Commerce. Proyecto académico.
+            </p>
+
+        </div>
+    </footer>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+    <script type="module" src="./src/index.js"></script>
+
+</body>
+
+</html>

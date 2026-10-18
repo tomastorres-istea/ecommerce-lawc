@@ -1,0 +1,102 @@
+La app debe cumplir con los siguiente requisitos:
+
+-Responsive: 
+La app debe adaptarse a los diferentes tamaños de dispositivos.
+
+Recurso:
+https://responsively.app/
+
+
+-UX : 
+El diseño debe ser consistente en toda la aplicación, utilizando una paleta de 
+colores, tipografía y elementos visuales coherentes.
+
+Recursos:
+
+https://fonts.google.com/
+
+https://balsamiq.com/learn/articles/button-design-best-practices/
+
+https://makeitclear.com/ux-ui-tips-a-guide-to-creating-buttons/
+
+https://sweetalert2.github.io/
+
+https://dribbble.com/search/e-commerce
+
+swiperjs.com/demos
+
+
+-Políticas de accesibilidad:
+Utilizar etiquetas semánticas de HTML 5 para el estructurado de la página 
+como <header>, <nav>, <main>, <section>, <footer>, entre otros. 
+
+Recursos:
+https://accesibilidadenlaweb.com.ar/7claves/
+
+https://www.w3schools.com/tags/tag_html.asp
+
+
+-Tecnologías: 
+HTML 5
+CSS3 (se recomienda usar Bootstrap 5 https://getbootstrap.com/)
+Javascript: DOM, Fetch, Local Storage. 
+Api: https://fakestoreapi.com/ o https://web-api-products.runasp.net/swagger/index.html
+     
+
+
+
+-----------------------------------------------------------------------------------------------
+
+
+
+
+Funcionalidad o lógica de negocio de la aplicación 
+
+1. Listar los productos consumidos de la API y mostrarlos en cards
+
+2. Cada producto mostrado debe tener un evento o acción que despliegue un modal con los detalles del 
+producto: Título, precio, descripción.
+
+3. El modal debe poder cerrarse desde la opción ‘X’  o desde el botón “agregar al carrito” y regresar al 
+listado de los productos.
+
+4. Cuando se agrega al carrito el producto, éste debe ser almacenado en el localstorage y debe mostrar 
+un mensaje al usuario que el producto se agregó al carrito
+
+5. Dentro de la barra de navegación debe aparecer el icono de carrito. El icono debe tener un evento 
+lo cual abrirá un sidebar o modal con el listado de los productos seleccionados previamente.
+Cuando se agreguen productos al carrito, debe aparecer un badge(burbuja) indicando la cantidad total de 
+productos que existen en el carrito(no la cantidad de prods diferentes)
+
+6. Dentro del sidebar, cada producto debe tener: imagen, título, btn (-), cantidad ,btn (+), btn 
+eliminar, y el precio final del producto
+btn (-) : debe poder descontar la cantidad del producto. Debe ponerse en deshabilitado cuando es igual 1.
+btn(+) : debe poder aumentar la cantidad del producto. Debe habilitar el btn (-) cuando sea mayor a 1
+btn eliminar: elimina el producto de la lista.
+precio final del producto: debe variar de acuerdo a la cantidad del producto elegido por el precio. 
+* Cada acción debe actualizar el localstorage
+
+7. El side debe tener un btn finalizar compra, lo cual limpie el carrito de compras, limpie datos del 
+localstorage  y muestre un mensaje al usuario. 
+
+8. El sidebar debe tener otro btn eliminar el cual elimine todos los productos del carrito, y borre los 
+datos del localstorage. 
+
+9. Los btns anteriormente mencionados, o no deben aparecer cuando el carrito se encuentre vacío o deben 
+estar deshabilitado, omitiendo cualquier interacción del usuario.
+
+10. Por último, se debe agregar un buscador, para poder filtrar productos o buscar un producto
+
+11. La web app también tendrá que implementar una navegación por categorías, o sea cuando seleccione una 
+categoría debe mostrar solo los productos que correspondan a esa categoría.
+
+12. La web app también tendrá que implementar un formulario de envío a domicilio, con los datos necesarios
+para realizar el envío: nombre, apellido, email, teléfono, dirección, ciudad y código postal. 
+El formulario debe incluir las validaciones necesarias en cada campo (campos obligatorios, formato 
+válido de email, teléfono y código postal numéricos, longitud mínima, etc.), mostrando mensajes de error 
+claros al usuario. 
+Cuando el usuario presione el botón “Enviar” y todos los datos sean válidos, debe aparecer un modal 
+aparte que capture y muestre los datos ingresados, como mínimo el nombre y apellido y la dirección 
+del usuario.
+
+
