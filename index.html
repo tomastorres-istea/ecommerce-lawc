@@ -122,17 +122,19 @@
         </nav>
     </head>
 
-    <main>
-
+    <main class="container">
 
         <section id="productos" class="container py-4">
             <h2 class="mb-4">Nuestros productos</h2>
 
-            <div id="listaProductos" class="row row-cols-1 md:row-cols-2 g-4">
-                <!-- Las cards se generan desde JS index.js -->
+            <!-- Las cards se generan desde JS index.js -->
+            <div id="listaProductos" class="row row-cols-1 md:row-cols-4 g-4">
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="productoModal" tabindex="-1" role="dialog" aria-labelledby="productoModal" aria-hidden="true">
             </div>
         </section>
-
     </main>
 
     <footer id="contacto" class="footer">

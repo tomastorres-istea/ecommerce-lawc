@@ -40,6 +40,10 @@ async function mostrarProductos() {
             descripcion.className = 'card-text';
             descripcion.textContent = producto.description;
 
+            const boton = document.createElement('button');
+            boton.className = "btn btn-primary mx-auto";
+            boton.textContent = 'Mas Detalles';
+
             const precio = document.createElement('p');
             precio.className = 'card-text fw-bold';
             precio.textContent = new Intl.NumberFormat('en-US', {
@@ -48,7 +52,7 @@ async function mostrarProductos() {
             }).format(producto.price);
 
             // Armamado de la card
-            cuerpo.append(titulo, descripcion, precio);
+            cuerpo.append(titulo/* , descripcion, precio */ , boton);
             card.append(imagen, cuerpo);
             columna.append(card);
 
