@@ -1,4 +1,5 @@
 import { getProducts } from "../api.js";
+import { Modal } from "./modal.js";
 
 export function RenderdsCards(){
 
@@ -17,7 +18,6 @@ async function mostrarProductos() {
         listaProductos.innerHTML = '';
 
         productos.forEach(producto => {
-
             const columna = document.createElement('div');
             columna.className = 'col';
 
@@ -30,7 +30,7 @@ async function mostrarProductos() {
             imagen.className = 'card-img-top producto-imagen';
 
             const cuerpo = document.createElement('div');
-            cuerpo.className = 'card-body';
+            cuerpo.className = 'card-body text-center';
 
             const titulo = document.createElement('h4');
             titulo.className = 'card-title';
@@ -40,9 +40,15 @@ async function mostrarProductos() {
             descripcion.className = 'card-text';
             descripcion.textContent = producto.description;
 
+            // Boton para el Modal
             const boton = document.createElement('button');
-            boton.className = "btn btn-primary mx-auto";
+            boton.className = "btn btn-dark ";
             boton.textContent = 'Mas Detalles';
+            boton.id = producto.id;
+
+            boton.addEventListener('click', () => {
+                Modal(producto);
+            });
 
             const precio = document.createElement('p');
             precio.className = 'card-text fw-bold';
