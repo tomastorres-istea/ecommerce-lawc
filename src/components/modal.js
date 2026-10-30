@@ -27,12 +27,13 @@ export function Modal(producto) {
 
                 <div class="modal-body">
                     <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         <img class="modal-image">
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <p class="modal-descripcion"></p>
                     </div>
+                    <div class="d-flex justify-content-md-end">
                         <p class="modal-precio fw-bold"></p>
                     </div>
                 </div>
@@ -53,7 +54,7 @@ export function Modal(producto) {
     contenedor.querySelector('.modal-descripcion').textContent =
         producto.description;
 
-    contenedor.querySelector('.modal-precio').textContent = precio;
+    contenedor.querySelector('.modal-precio').textContent = `Precio: ${precio}`;
 
     contenedor.querySelector('.modal-image').src = producto.image;
 

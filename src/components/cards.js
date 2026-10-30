@@ -15,8 +15,6 @@ async function mostrarProductos() {
 
         const productos = await getProducts();
 
-        console.log(productos[1].image)
-
         listaProductos.innerHTML = '';
 
         productos.forEach(producto => {
@@ -32,7 +30,7 @@ async function mostrarProductos() {
             imagen.className = 'card-img-top producto-imagen';
 
             const cuerpo = document.createElement('div');
-            cuerpo.className = 'card-body text-center';
+            cuerpo.className = 'card-body text-center d-flex flex-column';
 
             const titulo = document.createElement('h4');
             titulo.className = 'card-title';
@@ -44,7 +42,7 @@ async function mostrarProductos() {
 
             // Boton para el Modal
             const boton = document.createElement('button');
-            boton.className = "btn btn-dark ";
+            boton.className = "btn btn-dark mt-auto ";
             boton.textContent = 'Mas Detalles';
             boton.id = producto.id;
 
