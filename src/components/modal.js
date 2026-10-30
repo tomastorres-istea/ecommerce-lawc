@@ -26,17 +26,20 @@ export function Modal(producto) {
                 </div>
 
                 <div class="modal-body">
-                    <p class="modal-descripcion"></p>
-                    <p class="modal-precio fw-bold"></p>
+                    <div class="row">
+                    <div class="col">
+                        <img class="modal-image">
+                    </div>
+                    <div class="col">
+                        <p class="modal-descripcion"></p>
+                    </div>
+                        <p class="modal-precio fw-bold"></p>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-                        Cerrar
-                    </button>
+                    <button type="button" class="btn btn-secondary"> Cerrar </button>
+                    <button type="button" class="btn btn-primary"> Agregar a carrito </button>
                 </div>
 
             </div>
@@ -51,6 +54,8 @@ export function Modal(producto) {
         producto.description;
 
     contenedor.querySelector('.modal-precio').textContent = precio;
+
+    contenedor.querySelector('.modal-image').src = producto.image;
 
     // Mostrar la ventana modal
     const bootstrapModal = new BootstrapModal(contenedor);

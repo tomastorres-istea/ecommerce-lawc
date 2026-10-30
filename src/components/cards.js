@@ -15,6 +15,8 @@ async function mostrarProductos() {
 
         const productos = await getProducts();
 
+        console.log(productos[1].image)
+
         listaProductos.innerHTML = '';
 
         productos.forEach(producto => {
@@ -46,6 +48,7 @@ async function mostrarProductos() {
             boton.textContent = 'Mas Detalles';
             boton.id = producto.id;
 
+            // Evento del boton
             boton.addEventListener('click', () => {
                 Modal(producto);
             });
