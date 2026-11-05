@@ -11,7 +11,12 @@ export function getFromLocalStorage() {
 }
 
 export function saveToLocalStorage(item) {
+    initLocalStorage();
     let cart = getFromLocalStorage();
     cart.push(item);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+}
+
+export function setItemToLocalStorage(items) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
