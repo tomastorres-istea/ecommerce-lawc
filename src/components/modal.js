@@ -1,4 +1,4 @@
-
+import { saveToLocalStorage } from '../storage/storage.js';
 import { Modal as BootstrapModal } from
     'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/+esm';
 
@@ -40,7 +40,7 @@ export function Modal(producto) {
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"> Cerrar </button>
-                    <button type="button" class="btn btn-primary"> Agregar a carrito </button>
+                    <button type="button" class="btn btn-primary" id="addToCartBtn-${producto.id}"> Agregar a carrito </button>
                 </div>
 
             </div>
@@ -58,7 +58,15 @@ export function Modal(producto) {
 
     contenedor.querySelector('.modal-image').src = producto.image;
 
+    let btnAddToCart = document.querySelector(`#addToCartBtn-${producto.id}`);
+    btnAddToCart.addEventListener('click', () => {
+        // Lógica para agregar el producto al carrito
+        console.log('Producto agregado:', producto);
+        saveToLocalStorage(producto);
+    });
+
     // Mostrar la ventana modal
     const bootstrapModal = new BootstrapModal(contenedor);
     bootstrapModal.show();
 }
+
