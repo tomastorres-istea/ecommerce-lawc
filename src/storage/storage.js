@@ -20,3 +20,18 @@ export function saveToLocalStorage(item) {
 export function setItemToLocalStorage(items) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
+
+// Actualiza la cantidad de un producto en el carrito, acumulando la cantidad si el producto ya existe en el carrito 
+export function updateItemStorage(itemId, qtty){
+  let dataStorage = getFromLocalStorage();
+  let idx = dataStorage.findIndex((p) => p.id === itemId);
+  console.log(idx);
+  if (idx != -1) {
+    dataStorage[idx].qtty += qtty;
+    setItemToLocalStorage(dataStorage); 
+  }
+
+  return idx;
+
+}
+

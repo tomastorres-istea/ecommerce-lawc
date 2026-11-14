@@ -1,4 +1,4 @@
-import { getFromLocalStorage, setItemToLocalStorage} from '../storage/storage.js';
+import { getFromLocalStorage, setItemToLocalStorage, updateItemStorage, saveToLocalStorage} from '../storage/storage.js';
 import { count, addCounterEventListeners } from './contador.js';
 import { Modal as BootstrapModal } from
     'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/+esm';
@@ -62,15 +62,18 @@ export function Modal(producto) {
 
     contenedor.querySelector('.modal-image').src = producto.image;
 
+    // Evento btn carrito    
     addCounterEventListeners(producto.id, 1);
     let btnAddToCart = document.querySelector(`#addToCartBtn-${producto.id}`);
     btnAddToCart.addEventListener('click', () => {
-        producto.quantity = parseInt(document.querySelector(`#count-${producto.id}`).textContent);
-        let dataStorage = getFromLocalStorage();
-        let filteredData = dataStorage.filter(p => p.id !== producto.id);
-        filteredData.push(producto);
-        setItemToLocalStorage(filteredData);
-    });
+        let qtty = parseInt(document.querySelector(`#count-${producto.id}`).textContent);
+        let idx = updateItemStorage(producto.id, qtty);
+        if (idx === -1) {
+            producto.qtty = qtty;
+            saveToLocalStorage(producto);
+        }
+        }
+    );
 
     // Mostrar la ventana modal
     const bootstrapModal = new BootstrapModal(contenedor);
