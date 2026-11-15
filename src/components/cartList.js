@@ -17,6 +17,10 @@ export function cartList() {
         return total + Number(producto.qtty || 0);
     }, 0);
 
+    let precioTotal = datastorage.reduce((total, producto) => {
+    return total + (Number(producto.price) * Number(producto.qtty));
+    }, 0);
+
     cartBadge.textContent = totalProductos;
     cartBadge.classList.toggle('d-none', totalProductos === 0);
 
@@ -28,6 +32,8 @@ export function cartList() {
     
     // Iterar sobre los productos en el carrito y generar la tarjeta
     datastorage.forEach((e) => {
+        let cantidad = Number(e.qtty);
+        let precioFinal = Number(e.price) * cantidad;
         template += `
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
@@ -37,10 +43,27 @@ export function cartList() {
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">${e.title}</h5>
-                <p class="card-text">Cantidad: ${e.qtty}</p>
+                <div class="d-flex align-items-center gap-2 my-3">
+                  <button 
+                    class="btn btn-outline-secondary btn-sm"
+                    id="decrement-${e.id}"
+                    ${cantidad === 1 ? 'disabled' : ''}>
+                    -
+                  </button>
+
+                  <span class="fw-bold" id="count-${e.id}">
+                    ${cantidad}
+                  </span>
+
+                  <button 
+                    class="btn btn-outline-secondary btn-sm"
+                    id="increment-${e.id}">
+                    +
+                  </button>
+                </div>
               </div>
               <div class= "d-flex justify-content-between align-items-center">
-                  <small class="text-body-secondary">Precio: $${e.price}</small>
+                  <small class="text-body-secondary">Precio final: $${precioFinal.toFixed(2)}</small>
                   <button class="btn btn-danger border-0" id="removeItemBtn-${e.id}"><i class="bi bi-trash2-fill"></i></button>
               </div>
             </div>
@@ -51,24 +74,75 @@ export function cartList() {
     // Actualizar el contenido del offcanvas con las tarjetas generadas
     offcanvasbody.innerHTML = template + `
     <div class="border-top pt-3 mt-3">
-        <h5 class="text-end">
-            Total de productos: ${totalProductos}
-        </h5>
+      <div class="d-flex justify-content-between align-items-center">
+        <h6 class="mb-0">
+          Total de productos: ${totalProductos}
+        </h6>
+
+        <h6 class="mb-0">
+          Precio final: $${precioTotal.toFixed(2)}
+        </h6>
+
+      </div>
     </div>
     `;
     // Agregar la funcionalidad para los botones de eliminar
-    removeItemFromCart(datastorage);
+    addCartEventListeners(datastorage);
+}
+
+// Función para agregar los eventos a los botones del carrito
+function addCartEventListeners(productos) {
+
+    productos.forEach((producto) => {
+
+        let btnIncrement = document.querySelector(`#increment-${producto.id}`);
+        let btnDecrement = document.querySelector(`#decrement-${producto.id}`);
+        let btnRemove = document.querySelector(`#removeItemBtn-${producto.id}`);
+
+        console.log('Producto:', producto.id);
+        console.log('Botón +:', btnIncrement);
+        console.log('Botón -:', btnDecrement);
+
+        // Aumentar cantidad
+        btnIncrement.addEventListener('click', () => {
+            updateQuantity(producto.id, 1);
+        });
+
+        // Disminuir cantidad
+        btnDecrement.addEventListener('click', () => {
+            updateQuantity(producto.id, -1);
+        });
+
+        // Eliminar producto
+        btnRemove.addEventListener('click', () => {
+            deleteItemFromStorage(producto.id);
+            Toast(`Se eliminó ${producto.title} del carrito`, 'danger');
+            cartList();
+        });
+    });
 }
 
 
-// Función para eliminar un producto del carrito
-function removeItemFromCart(productoStorage) {
-  productoStorage.forEach((producto) => {
-    let btn = document.querySelector(`#removeItemBtn-${producto.id}`);
-    btn.addEventListener('click', () => {
-      deleteItemFromStorage(producto.id);
-      Toast(`Se agrego ${producto.title} al carrito`, 'danger');
-      cartList(); 
-    })
-  })
+// Función para actualizar la cantidad del producto
+function updateQuantity(productId, cambio) {
+
+    let productos = getFromLocalStorage() || [];
+
+    let producto = productos.find((p) => p.id === productId);
+
+    if (producto) {
+
+        let nuevaCantidad = Number(producto.qtty) + cambio;
+
+        if (nuevaCantidad >= 1) {
+
+            producto.qtty = nuevaCantidad;
+
+            // Guardar los cambios en Local Storage
+            setItemToLocalStorage(productos);
+
+            // Actualizar el carrito
+            cartList();
+        }
+    }
 }
