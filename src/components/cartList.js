@@ -82,10 +82,20 @@ export function cartList() {
         <h6 class="mb-0">
           Precio final: $${precioTotal.toFixed(2)}
         </h6>
+      </div>
 
+      <div class="d-flex gap-2 mt-3">
+        <button class="btn btn-success w-100" id="finishPurchase">
+          Finalizar compra
+        </button>
+
+        <button class="btn btn-danger w-100" id="deleteCart">
+          Eliminar carrito
+        </button>
       </div>
     </div>
     `;
+
     // Agregar la funcionalidad para los botones de eliminar
     addCartEventListeners(datastorage);
 }
@@ -98,10 +108,6 @@ function addCartEventListeners(productos) {
         let btnIncrement = document.querySelector(`#increment-${producto.id}`);
         let btnDecrement = document.querySelector(`#decrement-${producto.id}`);
         let btnRemove = document.querySelector(`#removeItemBtn-${producto.id}`);
-
-        console.log('Producto:', producto.id);
-        console.log('Botón +:', btnIncrement);
-        console.log('Botón -:', btnDecrement);
 
         // Aumentar cantidad
         btnIncrement.addEventListener('click', () => {
@@ -119,6 +125,24 @@ function addCartEventListeners(productos) {
             Toast(`Se eliminó ${producto.title} del carrito`, 'danger');
             cartList();
         });
+    });
+
+    // Finalizar compra
+    let btnFinish = document.querySelector('#finishPurchase');
+
+    btnFinish.addEventListener('click', () => {
+        setItemToLocalStorage([]);
+        Toast('¡Compra finalizada correctamente!', 'success');
+        cartList();
+    });
+
+    // Eliminar todo el carrito
+    let btnDeleteCart = document.querySelector('#deleteCart');
+
+    btnDeleteCart.addEventListener('click', () => {
+        setItemToLocalStorage([]);
+        Toast('Se eliminaron todos los productos del carrito', 'danger');
+        cartList();
     });
 }
 
