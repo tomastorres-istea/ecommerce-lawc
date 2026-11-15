@@ -35,3 +35,9 @@ export function updateItemStorage(itemId, qtty){
 
 }
 
+
+export function deleteItemFromStorage(itemId) {
+  let productoStorage = getFromLocalStorage();
+  let newDataStorage = productoStorage.filter((e) => e.id !== itemId);
+  setItemToLocalStorage(newDataStorage);
+}

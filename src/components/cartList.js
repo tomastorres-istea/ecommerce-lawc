@@ -1,4 +1,4 @@
-import { getFromLocalStorage, setItemToLocalStorage } from "../storage/storage.js";
+import { deleteItemFromStorage, getFromLocalStorage, setItemToLocalStorage } from "../storage/storage.js";
 
 // Función para mostrar la lista de productos en el carrito
 export function cartList() {
@@ -26,7 +26,7 @@ export function cartList() {
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">${e.title}</h5>
-                <p class="card-text">Cantidad: $${e.qtty}</p>
+                <p class="card-text">Cantidad: ${e.qtty}</p>
               </div>
               <div class= "d-flex justify-content-between align-items-center">
                   <small class="text-body-secondary">Precio: $${e.price}</small>
@@ -35,12 +35,13 @@ export function cartList() {
             </div>
           </div>
         </div>
-  `
+  `})
+
     // Actualizar el contenido del offcanvas con las tarjetas generadas
     offcanvasbody.innerHTML = template;
     // Agregar la funcionalidad para los botones de eliminar
     removeItemFromCart(datastorage);
-})}
+}
 
 
 // Función para eliminar un producto del carrito
@@ -48,8 +49,7 @@ function removeItemFromCart(productoStorage) {
   productoStorage.forEach((producto) => {
     let btn = document.querySelector(`#removeItemBtn-${producto.id}`);
     btn.addEventListener('click', () => {
-      let newDataStorage = productoStorage.filter((e) => e.id !== producto.id);
-      setItemToLocalStorage(newDataStorage);
+      deleteItemFromStorage(producto.id);
       cartList(); 
     })
   })

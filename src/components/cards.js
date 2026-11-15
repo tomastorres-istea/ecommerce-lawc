@@ -1,81 +1,48 @@
-import { getProducts } from "../services/api.js";
 import { Modal } from "./modal.js";
 
-export function RenderdsCards(){
+export function RenderdsCards(productos) {
+    const listaProductos = document.querySelector('#listaProductos');
+    listaProductos.innerHTML = '';
 
-// constant para el contenedor donde se mostrarán los productos
+    if (!productos || productos.length === 0) {
+        listaProductos.innerHTML = '<p class="text-center text-muted my-4">No se encontraron productos.</p>';
+        return;
+    }
 
-const listaProductos = document.querySelector('#listaProductos');
+    productos.forEach(producto => {
+        const columna = document.createElement('div');
+        columna.className = 'col';
 
-// Función para mostrar los productos en la página
+        const card = document.createElement('div');
+        card.className = 'card h-100';
 
-async function mostrarProductos() {
-    try {
-        listaProductos.textContent = 'Cargando productos...';
+        const imagen = document.createElement('img');
+        imagen.src = producto.image;
+        imagen.alt = producto.title;
+        imagen.className = 'card-img-top producto-imagen';
 
-        const productos = await getProducts();
+        const cuerpo = document.createElement('div');
+        cuerpo.className = 'card-body text-center d-flex flex-column';
 
-        listaProductos.innerHTML = '';
+        const titulo = document.createElement('h4');
+        titulo.className = 'card-title';
+        titulo.textContent = producto.title;
 
-        productos.forEach(producto => {
-            const columna = document.createElement('div');
-            columna.className = 'col';
+        // Botón para el Modal
+        const boton = document.createElement('button');
+        boton.className = "btn btn-dark mt-auto";
+        boton.textContent = 'Mas Detalles';
+        boton.id = producto.id;
 
-            const card = document.createElement('div');
-            card.className = 'card h-100';
-
-            const imagen = document.createElement('img');
-            imagen.src = producto.image;
-            imagen.alt = producto.title;
-            imagen.className = 'card-img-top producto-imagen';
-
-            const cuerpo = document.createElement('div');
-            cuerpo.className = 'card-body text-center d-flex flex-column';
-
-            const titulo = document.createElement('h4');
-            titulo.className = 'card-title';
-            titulo.textContent = producto.title;
-
-            const descripcion = document.createElement('p');
-            descripcion.className = 'card-text';
-            descripcion.textContent = producto.description;
-
-            // Boton para el Modal
-            const boton = document.createElement('button');
-            boton.className = "btn btn-dark mt-auto ";
-            boton.textContent = 'Mas Detalles';
-            boton.id = producto.id;
-
-            // Evento del boton
-            boton.addEventListener('click', () => {
-                Modal(producto);
-            });
-
-            const precio = document.createElement('p');
-            precio.className = 'card-text fw-bold';
-            precio.textContent = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD'
-            }).format(producto.price);
-
-            // Armamado de la card
-            cuerpo.append(titulo/* , descripcion, precio */ , boton);
-            card.append(imagen, cuerpo);
-            columna.append(card);
-
-            // Agregar la card a la lista de productos
-            listaProductos.append(columna);
+        boton.addEventListener('click', () => {
+            Modal(producto);
         });
 
-    } catch (error) {
-        listaProductos.textContent =
-            'No se pudieron cargar los productos. Intentá nuevamente más tarde.';
+        // Armado de la card
+        cuerpo.append(titulo, boton);
+        card.append(imagen, cuerpo);
+        columna.append(card);
 
-        console.error('Error al cargar los productos:', error);
-    }
+        listaProductos.append(columna);
+    });
 }
-
-mostrarProductos();
-
-}
-

@@ -49,7 +49,7 @@
                                 Inicio
                             </a>
                         </li>
-
+                        <!-- Enlace a la sección de productos -->
                         <li class="nav-item">
                             <a class="nav-link" href="#productos">
                                 Productos
@@ -77,17 +77,19 @@
                     </ul>
 
                     <!-- Buscador -->
-                    <form class="d-flex gap-2" role="search">
+                    <form class="d-flex gap-2" role="search id="formSearch">
                         <input
                             class="form-control"
                             type="search"
                             placeholder="Buscar productos"
-                            aria-label="Buscar productos">
+                            aria-label="Buscar productos"
+                            id="inputSearch">
                         <button class="btn btn-outline-secondary" type="submit">
                             🔍
                         </button>
                     </form>
 
+                    <!-- Botón del carrito -->
                     <button 
                     type="button" class="btn btn-primary px-4" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                         <i class="bi bi-cart-plus-fill"></i>
