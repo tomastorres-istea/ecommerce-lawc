@@ -1,4 +1,5 @@
 import { deleteItemFromStorage, getFromLocalStorage, setItemToLocalStorage } from "../storage/storage.js";
+import { Toast } from "./toast.js";
 
 // Función para mostrar la lista de productos en el carrito
 export function cartList() {
@@ -50,6 +51,7 @@ function removeItemFromCart(productoStorage) {
     let btn = document.querySelector(`#removeItemBtn-${producto.id}`);
     btn.addEventListener('click', () => {
       deleteItemFromStorage(producto.id);
+      Toast(`Se agrego ${producto.title} al carrito`, 'danger');
       cartList(); 
     })
   })

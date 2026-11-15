@@ -3,6 +3,7 @@ import { cartList } from './cartList.js';
 import { count, addCounterEventListeners } from './contador.js';
 import { Modal as BootstrapModal } from
     'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/+esm';
+import { Toast } from './toast.js';
 
 export function Modal(producto) {
     const contenedor = document.querySelector('#productoModal');
@@ -73,7 +74,7 @@ export function Modal(producto) {
             producto.qtty = qtty;
             saveToLocalStorage(producto);
         }
-
+        Toast(`Se agrego ${producto.title} al carrito`, 'success');
         cartList();
         }
     );
