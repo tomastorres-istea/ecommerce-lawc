@@ -37,8 +37,8 @@ export function cartList() {
         template += `
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
-            <div class="col-md-4 d-flex align-items-center align-items-center justify-content-center">
-              <img src="${e.image}" class="img-fluid rounded-start" alt="...">
+            <div class="col-4 d-flex align-items-center justify-content-center">
+              <img src="${e.image}" class="rounded-start imagen-carrito" alt="${e.title}">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -85,8 +85,7 @@ export function cartList() {
       </div>
 
       <div class="d-flex gap-2 mt-3">
-        <button class="btn btn-success w-100" id="finishPurchase"
-          class="btn btn-success w-100" 
+        <button class="btn btn-success w-100" 
           id="finishPurchase"
           data-bs-toggle="modal"
           data-bs-target="#shippingModal">

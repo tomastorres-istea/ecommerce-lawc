@@ -25,7 +25,6 @@ export function setItemToLocalStorage(items) {
 export function updateItemStorage(itemId, qtty){
   let dataStorage = getFromLocalStorage();
   let idx = dataStorage.findIndex((p) => p.id === itemId);
-  console.log(idx);
   if (idx != -1) {
     dataStorage[idx].qtty += qtty;
     setItemToLocalStorage(dataStorage); 

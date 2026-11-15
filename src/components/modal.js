@@ -1,4 +1,4 @@
-import { getFromLocalStorage, setItemToLocalStorage, updateItemStorage, saveToLocalStorage} from '../storage/storage.js';
+import { updateItemStorage, saveToLocalStorage} from '../storage/storage.js';
 import { cartList } from './cartList.js';
 import { count, addCounterEventListeners } from './contador.js';
 import { Modal as BootstrapModal } from
@@ -14,7 +14,7 @@ export function Modal(producto) {
     }).format(producto.price);
 
     contenedor.innerHTML = `
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -29,20 +29,24 @@ export function Modal(producto) {
                 </div>
 
                 <div class="modal-body">
-                    <div class="row">
-                    <div class="col-md-6">
-                        <img class="modal-image">
-                    </div>
-                    <div class="col-md-6">
-                        <p class="modal-descripcion"></p>
-                    </div>
-                    <div class="d-flex justify-content-md-end">
-                        <p class="modal-precio fw-bold"></p>
+                    <div class="row align-items-center">
+                        <!-- Columna izquierda: imagen -->
+                        <div class="col-md-5 d-flex align-items-center justify-content-center">
+                            <img class="modal-image">
+                        </div>
+
+                        <!-- Columna derecha: descripción, precio y contador -->
+                        <div class="col-md-7">
+                            <p class="modal-descripcion"></p>
+
+                            <div class="d-flex justify-content-center">
+                                <p class="modal-precio fw-bold"></p>
+                            </div>
+
+                            ${count(producto.id)}
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Agregar el contador al modal -->
-                ${count(producto.id)}
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="closeModalBtn"> Cerrar </button>
@@ -66,9 +70,9 @@ export function Modal(producto) {
 
     // Evento btn carrito    
     addCounterEventListeners(producto.id, 1);
-    let btnAddToCart = document.querySelector(`#addToCartBtn-${producto.id}`);
+    let btnAddToCart = contenedor.querySelector(`#addToCartBtn-${producto.id}`);
     btnAddToCart.addEventListener('click', () => {
-        let qtty = parseInt(document.querySelector(`#count-${producto.id}`).textContent);
+        let qtty = parseInt(contenedor.querySelector(`#count-${producto.id}`).textContent);
         let idx = updateItemStorage(producto.id, qtty);
         if (idx === -1) {
             producto.qtty = qtty;

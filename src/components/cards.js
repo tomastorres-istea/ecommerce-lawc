@@ -31,7 +31,7 @@ export function RenderdsCards(productos) {
         // Botón para el Modal
         const boton = document.createElement('button');
         boton.className = "btn btn-dark mt-auto";
-        boton.textContent = 'Mas Detalles';
+        boton.textContent = 'Más Detalles';
         boton.id = producto.id;
 
         boton.addEventListener('click', () => {

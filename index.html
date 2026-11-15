@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -63,10 +63,10 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#" id="todosProductos">Todos los productos</a></li>
-                                <li><a class="dropdown-item" href="#" id="electronics">Electronics</a></li>
-                                <li><a class="dropdown-item" href="#" id="jewelery">Jewelery</a></li>
-                                <li><a class="dropdown-item" href="#" id="men-s-clothing">Men's clothing</a></li>
-                                <li><a class="dropdown-item" href="#" id="women-s-clothing">Women's clothing</a></li>
+                                <li><a class="dropdown-item" href="#" id="electronics">Electrónica</a></li>
+                                <li><a class="dropdown-item" href="#" id="jewelery">Joyería</a></li>
+                                <li><a class="dropdown-item" href="#" id="men-s-clothing">Ropa de hombre</a></li>
+                                <li><a class="dropdown-item" href="#" id="women-s-clothing">Ropa de mujer</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#contacto">Ayuda y contacto</a></li>
                             </ul>                            
@@ -75,16 +75,18 @@
                     </ul>
 
                     <!-- Buscador -->
-                    <form class="d-flex gap-2" role="search" id="formSearch">
-                        <input
-                            class="form-control"
-                            type="search"
-                            placeholder="Buscar productos"
-                            aria-label="Buscar productos"
-                            id="inputSearch">
-                        <button class="btn btn-outline-secondary" type="submit">
-                            🔍
-                        </button>
+                    <form class="d-flex me-3" role="search" id="formSearch">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input
+                                class="form-control"
+                                type="search"
+                                placeholder="Buscar productos"
+                                aria-label="Buscar productos"
+                                id="inputSearch">
+                        </div>
                     </form>
 
                     <!-- Botón del carrito -->
@@ -108,7 +110,7 @@
             <h2 class="mb-4">Nuestros productos</h2>
 
             <!-- Las cards se generan desde JS index.js -->
-            <div id="listaProductos" class="row row-cols-1 row-cols-md-4 g-4">
+            <div id="listaProductos" class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-4">
             </div>
 
             <!-- Modal -->
@@ -116,9 +118,9 @@
             </div>
         </section>
         <!-- Notificaciones -->
-        <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100"></div>
-
+        <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
         </div>
+
     </main>
 
     <footer id="contacto" class="footer">
@@ -126,12 +128,12 @@
 
             <div class="row g-4">
 
-                <div class="col-md-6">
+                <div class="col-12 text-center">
                     <h4>Contacto</h4>
 
                     <p>
-                        ¿Tenés alguna consulta? Próximamente vas a poder
-                        comunicarte con nosotros desde esta sección.
+                        Gracias por visitar LAWC e-Commerce. 
+                        ¡Esperamos que encuentres lo que estás buscando!
                     </p>
                 </div>
 
