@@ -2,6 +2,7 @@ import { RenderdsCards } from './components/cards.js';
 import { cartList } from './components/cartList.js';
 import { getProducts } from './services/api.js';
 import { initLocalStorage } from './storage/storage.js';
+import { validateShippingForm } from './components/shippingForm.js';
 
 initLocalStorage();
 cartList();
@@ -89,4 +90,5 @@ async function iniciarTienda() {
     }
 }
 
+validateShippingForm();
 iniciarTienda();

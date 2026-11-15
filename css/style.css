@@ -95,3 +95,9 @@ img {
 #listaProductos .card .card-text {
     overflow-wrap: anywhere;
 }
+
+.form-control.is-valid,
+.form-control.is-invalid {
+    background-image: none !important;
+    padding-right: 0.75rem;
+}

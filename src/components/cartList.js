@@ -85,7 +85,11 @@ export function cartList() {
       </div>
 
       <div class="d-flex gap-2 mt-3">
-        <button class="btn btn-success w-100" id="finishPurchase">
+        <button class="btn btn-success w-100" id="finishPurchase"
+          class="btn btn-success w-100" 
+          id="finishPurchase"
+          data-bs-toggle="modal"
+          data-bs-target="#shippingModal">
           Finalizar compra
         </button>
 
@@ -103,11 +107,13 @@ export function cartList() {
 // Función para agregar los eventos a los botones del carrito
 function addCartEventListeners(productos) {
 
+    let offcanvasbody = document.querySelector(".offcanvas-body");
+
     productos.forEach((producto) => {
 
-        let btnIncrement = document.querySelector(`#increment-${producto.id}`);
-        let btnDecrement = document.querySelector(`#decrement-${producto.id}`);
-        let btnRemove = document.querySelector(`#removeItemBtn-${producto.id}`);
+        let btnIncrement = offcanvasbody.querySelector(`#increment-${producto.id}`);
+        let btnDecrement = offcanvasbody.querySelector(`#decrement-${producto.id}`);
+        let btnRemove = offcanvasbody.querySelector(`#removeItemBtn-${producto.id}`);
 
         // Aumentar cantidad
         btnIncrement.addEventListener('click', () => {
@@ -125,15 +131,6 @@ function addCartEventListeners(productos) {
             Toast(`Se eliminó ${producto.title} del carrito`, 'danger');
             cartList();
         });
-    });
-
-    // Finalizar compra
-    let btnFinish = document.querySelector('#finishPurchase');
-
-    btnFinish.addEventListener('click', () => {
-        setItemToLocalStorage([]);
-        Toast('¡Compra finalizada correctamente!', 'success');
-        cartList();
     });
 
     // Eliminar todo el carrito
