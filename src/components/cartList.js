@@ -10,6 +10,16 @@ export function cartList() {
     //  Obtener los datos del carrito desde el almacenamiento local 
     let datastorage = getFromLocalStorage() || [];
 
+    // Actualizar la cantidad total de productos del carrito
+    let cartBadge = document.querySelector('#cartBadge');
+
+    let totalProductos = datastorage.reduce((total, producto) => {
+        return total + Number(producto.qtty || 0);
+    }, 0);
+
+    cartBadge.textContent = totalProductos;
+    cartBadge.classList.toggle('d-none', totalProductos === 0);
+
     // Si el carrito está vacío, mostrar un mensaje
     if (datastorage.length === 0) {
       offcanvasbody.innerHTML = '<p class="text-center text-muted my-4">El carrito está vacío.</p>';
@@ -39,7 +49,13 @@ export function cartList() {
   `})
 
     // Actualizar el contenido del offcanvas con las tarjetas generadas
-    offcanvasbody.innerHTML = template;
+    offcanvasbody.innerHTML = template + `
+    <div class="border-top pt-3 mt-3">
+        <h5 class="text-end">
+            Total de productos: ${totalProductos}
+        </h5>
+    </div>
+    `;
     // Agregar la funcionalidad para los botones de eliminar
     removeItemFromCart(datastorage);
 }

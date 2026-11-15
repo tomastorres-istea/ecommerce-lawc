@@ -76,6 +76,7 @@ export function Modal(producto) {
         }
         Toast(`Se agrego ${producto.title} al carrito`, 'success');
         cartList();
+        bootstrapModal.hide();
         }
     );
 
