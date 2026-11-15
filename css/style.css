@@ -84,14 +84,14 @@ img {
     padding: 15px;
 }
 
-.card {
+#listaProductos .card {
     height: 100%;
 }
 
-.card .card-title {
+#listaProductos .card .card-title {
     font-size: 1.1rem;
 }
 
-.card .card-text {
+#listaProductos .card .card-text {
     overflow-wrap: anywhere;
 }
